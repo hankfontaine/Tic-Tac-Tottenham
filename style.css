@@ -27,8 +27,8 @@ main {
 }
 
 #container {
-  height: 500px;
-  width: 500px;
+  height: 450px;
+  width: 450px;
   background-color: #0009ab;
   border: 10px solid slategray;
   border-radius: 9px;
@@ -38,9 +38,11 @@ main {
 }
 
 .cellStyle {
-  height: 1fr;
-  width: 1fr;
+  width: 150px;
+  height: 150px;
+  line-height: 125px;
   border: 10px solid rgba(255, 255, 255, 0.883);
   color: #de2110;
   font-size: 1fr;
+  box-sizing: border-box;
 }
