@@ -8,14 +8,14 @@ body {
   background-image: url("./wallpaper.jpg");
   height: 100vh;
   width: 100vw;
-  font-family: "Jost", sans-serif;
-  font-size: 100px;
-  text-align: center;
-  text-shadow: 1px 1px rgba(255, 255, 255, 0.883);
 }
 
 main {
   background-color: rgba(255, 255, 255, 0.883);
+  font-family: "Jost", sans-serif;
+  font-size: 100px;
+  text-align: center;
+  text-shadow: 1px 1px rgba(255, 255, 255, 0.883);
   height: 100vh;
   width: 100vw;
   margin-top: 0;
