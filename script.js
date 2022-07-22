@@ -1,20 +1,20 @@
 //////////////// GAME BOARD DESIGN //////////////////////
 const mainContainer = document.getElementById("container");
-for (i = 1; i <= 9; i++) {
+for (i = 0; i < 9; i++) {
   const cell = document.createElement("div");
   cell.classList.add("cellStyle");
-  cell.id = "cell" + i;
+  cell.id = i;
   mainContainer.appendChild(cell);
 }
-const gameSpaceOne = document.getElementById("cell1");
-const gameSpaceTwo = document.getElementById("cell2");
-const gameSpaceThree = document.getElementById("cell3");
-const gameSpaceFour = document.getElementById("cell4");
-const gameSpaceFive = document.getElementById("cell5");
-const gameSpaceSix = document.getElementById("cell6");
-const gameSpaceSeven = document.getElementById("cell7");
-const gameSpaceEight = document.getElementById("cell8");
-const gameSpaceNine = document.getElementById("cell9");
+const gameSpaceOne = document.getElementById("0");
+const gameSpaceTwo = document.getElementById("1");
+const gameSpaceThree = document.getElementById("2");
+const gameSpaceFour = document.getElementById("3");
+const gameSpaceFive = document.getElementById("4");
+const gameSpaceSix = document.getElementById("5");
+const gameSpaceSeven = document.getElementById("6");
+const gameSpaceEight = document.getElementById("7");
+const gameSpaceNine = document.getElementById("8");
 
 const clearBoard = () => {
   gameSpaceOne.innerHTML = "";
@@ -29,32 +29,36 @@ const clearBoard = () => {
 };
 
 ////////////////// GAME LOGIC ///////////////////////////
-clearBoard();
-
 const playerFactory = (name, isHuman, playerSymbol) => {
+  //   let isTurn = true;
   return { name, isHuman, playerSymbol };
 };
 const playerOne = playerFactory("Hank", "Human", "X");
 const playerTwo = playerFactory("HAL", "Computer", "O");
 
 const gameBoard = (() => {
-  const stateOfBoard = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
+  const stateOfBoard = ["", "", "", "", "", "", "", "", ""];
+  let gameButtons = document.querySelectorAll(".cellStyle");
+  gameButtons.forEach(function (cell) {
+    cell.addEventListener("click", function () {
+      gameBoard.stateOfBoard[cell.id] = "X";
+      console.log(gameBoard.stateOfBoard);
+      drawBoard();
+    });
+  });
   return { stateOfBoard };
 })();
 
-function drawBoard(input) {
-  input.forEach((element, index) => {
+const drawBoard = () => {
+  /////add PLAYERTURN for checking whose turn + player choice //////
+  //   clearBoard();
+  gameBoard.stateOfBoard.forEach((element, index) => {
     let cellsUpdated = document.querySelectorAll(".cellStyle");
     cellsUpdated[index].innerHTML = element;
   });
-}
-drawBoard(gameBoard.stateOfBoard);
+  //   const updatedBoardDisplay = drawBoard(gameBoard.stateOfBoard);
+  ////add WINNERCHECK to see if winner has been determined///////
+  //   return { playerTurn, winnerCheck };
+};
 
-const gameFlow = ((
-  preTurnBoardDisplay,
-  playerTurn,
-  updatedBoardDisplay,
-  winnerCheck
-) => {
-  return { preTurnBoardDisplay, playerTurn, updatedBoardDisplay, winnerCheck };
-})();
+drawBoard();
