@@ -1,50 +1,60 @@
 //////////////// GAME BOARD DESIGN //////////////////////
-let mainContainer = document.getElementById("container");
+const mainContainer = document.getElementById("container");
 for (i = 1; i <= 9; i++) {
-  let cell = document.createElement("div");
+  const cell = document.createElement("div");
   cell.classList.add("cellStyle");
   cell.id = "cell" + i;
   mainContainer.appendChild(cell);
 }
+const gameSpaceOne = document.getElementById("cell1");
+const gameSpaceTwo = document.getElementById("cell2");
+const gameSpaceThree = document.getElementById("cell3");
+const gameSpaceFour = document.getElementById("cell4");
+const gameSpaceFive = document.getElementById("cell5");
+const gameSpaceSix = document.getElementById("cell6");
+const gameSpaceSeven = document.getElementById("cell7");
+const gameSpaceEight = document.getElementById("cell8");
+const gameSpaceNine = document.getElementById("cell9");
 
-let gameSpaceOne = document.getElementById("cell1");
-let gameSpaceTwo = document.getElementById("cell2");
-let gameSpaceThree = document.getElementById("cell3");
-let gameSpaceFour = document.getElementById("cell4");
-let gameSpaceFive = document.getElementById("cell5");
-let gameSpaceSix = document.getElementById("cell6");
-let gameSpaceSeven = document.getElementById("cell7");
-let gameSpaceEight = document.getElementById("cell8");
-let gameSpaceNine = document.getElementById("cell9");
-
-gameSpaceOne.innerHTML = "T";
-gameSpaceTwo.innerHTML = "I";
-gameSpaceThree.innerHTML = "C";
-gameSpaceFour.innerHTML = "T";
-gameSpaceFive.innerHTML = "A";
-gameSpaceSix.innerHTML = "C";
-gameSpaceSeven.innerHTML = "T";
-gameSpaceEight.innerHTML = "Ø";
-gameSpaceNine.innerHTML = "E";
+const clearBoard = () => {
+  gameSpaceOne.innerHTML = "";
+  gameSpaceTwo.innerHTML = "";
+  gameSpaceThree.innerHTML = "";
+  gameSpaceFour.innerHTML = "";
+  gameSpaceFive.innerHTML = "";
+  gameSpaceSix.innerHTML = "";
+  gameSpaceSeven.innerHTML = "";
+  gameSpaceEight.innerHTML = "";
+  gameSpaceNine.innerHTML = "";
+};
 
 ////////////////// GAME LOGIC ///////////////////////////
+clearBoard();
+
+const playerFactory = (name, isHuman, playerSymbol) => {
+  return { name, isHuman, playerSymbol };
+};
+const playerOne = playerFactory("Hank", "Human", "X");
+const playerTwo = playerFactory("HAL", "Computer", "O");
+
 const gameBoard = (() => {
-  const addX = (selectedCell) => (selectedCell.innerHTML = "X");
-  const addO = (selectedCell) => (selectedCell.innerHTML = "O");
-  const checkForWinner = () => declareWinner();
-  return {
-    addX,
-    addO,
-    checkForWinner,
-  };
+  const stateOfBoard = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
+  return { stateOfBoard };
 })();
 
-// gameBoard.addO(gameSpaceOne);
-// gameBoard.addO(gameSpaceTwo);
-// gameBoard.addX(gameSpaceThree);
-// gameBoard.addO(gameSpaceFour);
-// gameBoard.addO(gameSpaceFive);
-// gameBoard.addX(gameSpaceSix);
-// gameBoard.addO(gameSpaceSeven);
-// gameBoard.addX(gameSpaceEight);
-// gameBoard.addX(gameSpaceNine);
+function drawBoard(input) {
+  input.forEach((element, index) => {
+    let cellsUpdated = document.querySelectorAll(".cellStyle");
+    cellsUpdated[index].innerHTML = element;
+  });
+}
+drawBoard(gameBoard.stateOfBoard);
+
+const gameFlow = ((
+  preTurnBoardDisplay,
+  playerTurn,
+  updatedBoardDisplay,
+  winnerCheck
+) => {
+  return { preTurnBoardDisplay, playerTurn, updatedBoardDisplay, winnerCheck };
+})();
