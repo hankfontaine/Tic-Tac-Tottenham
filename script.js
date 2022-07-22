@@ -30,19 +30,20 @@ const clearBoard = () => {
 
 ////////////////// GAME LOGIC ///////////////////////////
 const playerFactory = (name, isHuman, playerSymbol) => {
-  //   let isTurn = true;
   return { name, isHuman, playerSymbol };
 };
 const playerOne = playerFactory("Hank", "Human", "X");
 const playerTwo = playerFactory("HAL", "Computer", "O");
 
 const gameBoard = (() => {
-  const stateOfBoard = ["", "", "", "", "", "", "", "", ""];
+  const stateOfBoard = ["O", "", "O", "", "O", "", "O", "", "O"];
   let gameButtons = document.querySelectorAll(".cellStyle");
   gameButtons.forEach(function (cell) {
     cell.addEventListener("click", function () {
-      gameBoard.stateOfBoard[cell.id] = "X";
-      console.log(gameBoard.stateOfBoard);
+      if (cell.innerHTML != "X" && cell.innerHTML != "O") {
+        gameBoard.stateOfBoard[cell.id] = "X";
+        console.log(gameBoard.stateOfBoard);
+      }
       drawBoard();
     });
   });
