@@ -1,4 +1,21 @@
 //////////////// GAME BOARD DESIGN //////////////////////
+const header = document.getElementById("header");
+const xButton = document.createElement("button");
+xButton.onclick = function () {
+  playerOne.playerSymbol = "X";
+};
+xButton.classList.add("TopButtonStyle");
+xButton.innerHTML = "Play as X";
+header.appendChild(xButton);
+
+const oButton = document.createElement("button");
+oButton.onclick = function () {
+  playerOne.playerSymbol = "O";
+};
+oButton.classList.add("TopButtonStyle");
+oButton.innerHTML = "Play as 0";
+header.appendChild(oButton);
+
 const mainContainer = document.getElementById("container");
 for (i = 0; i < 9; i++) {
   const cell = document.createElement("div");
@@ -34,20 +51,20 @@ const playerFactory = (name, isHuman, playerTurn, playerSymbol) => {
   return { name, isHuman, playerTurn, playerSymbol };
 };
 const playerOne = playerFactory(
-  "Harry",
+  "Player One",
   //   prompt("What's player one's name?"),
   "Human",
   "first",
   //   prompt("What's player one's symbol?")
-  "H"
+  "X"
 );
 const playerTwo = playerFactory(
-  "Marv",
+  "Player Two",
   //   prompt("What's player two's name?"),
   "Computer",
   "second",
   //   prompt("What's player two's symbol?")
-  "M"
+  "O"
 );
 
 const gamePlay = (() => {
