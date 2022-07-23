@@ -33,8 +33,18 @@ clearBoard();
 const playerFactory = (name, isHuman, playerTurn, playerSymbol) => {
   return { name, isHuman, playerTurn, playerSymbol };
 };
-const playerOne = playerFactory("Hank", "Human", "first", "X");
-const playerTwo = playerFactory("HAL", "Computer", "second", "O");
+const playerOne = playerFactory(
+  prompt("What's player one's name?"),
+  "Human",
+  "first",
+  prompt("What's player one's symbol?")
+);
+const playerTwo = playerFactory(
+  prompt("What's player two's name?"),
+  "Computer",
+  "second",
+  prompt("What's player two's symbol?")
+);
 
 const gamePlay = (() => {
   let playerTurn = "first";
@@ -47,15 +57,15 @@ const gameBoard = (() => {
   gameButtons.forEach(function (cell) {
     cell.addEventListener("click", function () {
       if (
-        cell.innerHTML != "X" &&
-        cell.innerHTML != "O" &&
+        cell.innerHTML != playerOne.playerSymbol &&
+        cell.innerHTML != playerTwo.playerSymbol &&
         gamePlay.playerTurn === "first"
       ) {
         gameBoard.stateOfBoard[cell.id] = playerOne.playerSymbol;
       }
       if (
-        cell.innerHTML != "X" &&
-        cell.innerHTML != "O" &&
+        cell.innerHTML != playerOne.playerSymbol &&
+        cell.innerHTML != playerTwo.playerSymbol &&
         gamePlay.playerTurn === "second"
       ) {
         gameBoard.stateOfBoard[cell.id] = playerTwo.playerSymbol;
@@ -103,6 +113,7 @@ function checkForWinner() {
         gameSpaceSeven.innerHTML === playerOne.playerSymbol)
     ) {
       result = `${playerOne.name} wins!`;
+      alert(result);
     } else if (
       (gameSpaceOne.innerHTML === playerTwo.playerSymbol &&
         gameSpaceTwo.innerHTML === playerTwo.playerSymbol &&
@@ -130,8 +141,11 @@ function checkForWinner() {
         gameSpaceSeven.innerHTML === playerTwo.playerSymbol)
     ) {
       result = `${playerTwo.name} wins!`;
+      alert(result);
     }
-  } else result = `${playerOne.name} and ${playerTwo.name} tied!`;
-  console.log(result);
+  } else {
+    result = `${playerOne.name} and ${playerTwo.name} tied!`;
+    alert(result);
+  }
   return result;
 }
