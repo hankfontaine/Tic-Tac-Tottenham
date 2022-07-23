@@ -17,17 +17,18 @@ const gameSpaceEight = document.getElementById("7");
 const gameSpaceNine = document.getElementById("8");
 
 const clearBoard = () => {
-  gameSpaceOne.innerHTML = "";
-  gameSpaceTwo.innerHTML = "";
-  gameSpaceThree.innerHTML = "";
-  gameSpaceFour.innerHTML = "";
-  gameSpaceFive.innerHTML = "";
-  gameSpaceSix.innerHTML = "";
-  gameSpaceSeven.innerHTML = "";
-  gameSpaceEight.innerHTML = "";
-  gameSpaceNine.innerHTML = "";
+  gameSpaceOne.innerHTML = "T";
+  gameSpaceTwo.innerHTML = "Ø";
+  gameSpaceThree.innerHTML = "T";
+  gameSpaceFour.innerHTML = "T";
+  gameSpaceFive.innerHTML = "E";
+  gameSpaceSix.innerHTML = "N";
+  gameSpaceSeven.innerHTML = "H";
+  gameSpaceEight.innerHTML = "A";
+  gameSpaceNine.innerHTML = "M";
 };
 
+clearBoard();
 ////////////////// GAME LOGIC ///////////////////////////
 const playerFactory = (name, isHuman, playerTurn, playerSymbol) => {
   return { name, isHuman, playerTurn, playerSymbol };
