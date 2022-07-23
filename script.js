@@ -1,20 +1,25 @@
 //////////////// GAME BOARD DESIGN //////////////////////
-const header = document.getElementById("header");
-const xButton = document.createElement("button");
-xButton.onclick = function () {
-  playerOne.playerSymbol = "X";
-};
-xButton.classList.add("TopButtonStyle");
-xButton.innerHTML = "Play as X";
-header.appendChild(xButton);
 
-const oButton = document.createElement("button");
-oButton.onclick = function () {
-  playerOne.playerSymbol = "O";
-};
-oButton.classList.add("TopButtonStyle");
-oButton.innerHTML = "Play as 0";
-header.appendChild(oButton);
+const delayOfDisplay = 2000;
+
+setTimeout(() => {
+  const header = document.getElementById("header");
+  const xButton = document.createElement("button");
+  xButton.onclick = function () {
+    playerOne.playerSymbol = "X";
+  };
+  xButton.classList.add("TopButtonStyle");
+  xButton.innerHTML = "Play as X";
+  header.appendChild(xButton);
+
+  const oButton = document.createElement("button");
+  oButton.onclick = function () {
+    playerOne.playerSymbol = "O";
+  };
+  oButton.classList.add("TopButtonStyle");
+  oButton.innerHTML = "Play as 0";
+  header.appendChild(oButton);
+}, delayOfDisplay);
 
 const mainContainer = document.getElementById("container");
 for (i = 0; i < 9; i++) {
