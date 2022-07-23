@@ -6,7 +6,6 @@ for (i = 0; i < 9; i++) {
   cell.id = i;
   mainContainer.appendChild(cell);
 }
-
 const gameSpaceOne = document.getElementById("0");
 const gameSpaceTwo = document.getElementById("1");
 const gameSpaceThree = document.getElementById("2");
@@ -28,23 +27,27 @@ const clearBoard = () => {
   gameSpaceEight.innerHTML = "A";
   gameSpaceNine.innerHTML = "M";
 };
-
 clearBoard();
+
 ////////////////// GAME LOGIC ///////////////////////////
 const playerFactory = (name, isHuman, playerTurn, playerSymbol) => {
   return { name, isHuman, playerTurn, playerSymbol };
 };
 const playerOne = playerFactory(
-  prompt("What's player one's name?"),
+  "Harry",
+  //   prompt("What's player one's name?"),
   "Human",
   "first",
-  prompt("What's player one's symbol?")
+  //   prompt("What's player one's symbol?")
+  "H"
 );
 const playerTwo = playerFactory(
-  prompt("What's player two's name?"),
+  "Marv",
+  //   prompt("What's player two's name?"),
   "Computer",
   "second",
-  prompt("What's player two's symbol?")
+  //   prompt("What's player two's symbol?")
+  "M"
 );
 
 const gamePlay = (() => {
@@ -53,7 +56,7 @@ const gamePlay = (() => {
 })();
 
 const gameBoard = (() => {
-  const stateOfBoard = ["", "", "", "", "", "", "", "", ""];
+  let stateOfBoard = ["", "", "", "", "", "", "", "", ""];
   let gameButtons = document.querySelectorAll(".cellStyle");
   gameButtons.forEach(function (cell) {
     cell.addEventListener("click", function () {
@@ -85,7 +88,7 @@ const gameBoard = (() => {
   return { stateOfBoard };
 })();
 
-function checkForWinner() {
+const checkForWinner = () => {
   let result;
   if (gameBoard.stateOfBoard.includes("")) {
     checkIfNotTie();
@@ -96,25 +99,23 @@ function checkForWinner() {
     } else result = `${playerOne.name} and ${playerTwo.name} tied!`;
     alert(result);
   }
-  if (result != undefined) {
-    gameBoard.stateOfBoard = ["", "", "", "", "", "", "", "", ""];
-  }
   return result;
-}
+};
 
-function createResetButton() {
+const createResetButton = () => {
   const bottom = document.getElementById("bottom");
   bottom.innerHTML = "";
   const resetButton = document.createElement("button");
   resetButton.onclick = function () {
     clearBoard();
+    gameBoard.stateOfBoard = ["", "", "", "", "", "", "", "", ""];
   };
   resetButton.classList.add("ButtonStyle");
   resetButton.innerHTML = "Reset The Board";
   bottom.appendChild(resetButton);
-}
+};
 
-function checkIfNotTie() {
+const checkIfNotTie = () => {
   if (
     (gameSpaceOne.innerHTML === playerOne.playerSymbol &&
       gameSpaceTwo.innerHTML === playerOne.playerSymbol &&
@@ -173,4 +174,4 @@ function checkIfNotTie() {
     alert(result);
     return result;
   }
-}
+};
