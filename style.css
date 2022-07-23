@@ -25,6 +25,26 @@ main {
   justify-content: center;
 }
 
+button {
+  border-radius: 9px;
+  font-family: "Jost", sans-serif;
+  font-size: 15px;
+  text-align: center;
+  text-shadow: 1px 1px black;
+  height: 80px;
+  width: 80px;
+}
+
+#bottom {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+  height: 100px;
+}
+
 #container {
   height: 450px;
   width: 450px;

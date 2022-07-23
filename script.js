@@ -6,6 +6,7 @@ for (i = 0; i < 9; i++) {
   cell.id = i;
   mainContainer.appendChild(cell);
 }
+
 const gameSpaceOne = document.getElementById("0");
 const gameSpaceTwo = document.getElementById("1");
 const gameSpaceThree = document.getElementById("2");
@@ -147,5 +148,24 @@ function checkForWinner() {
     result = `${playerOne.name} and ${playerTwo.name} tied!`;
     alert(result);
   }
+  if (result != undefined) {
+    createResetButton();
+    gameBoard.stateOfBoard = ["", "", "", "", "", "", "", "", ""];
+  }
   return result;
 }
+
+function createResetButton() {
+  //   if (resetButton) {
+  //     return;
+  //   } else {
+  const bottom = document.getElementById("bottom");
+  const resetButton = document.createElement("button");
+  resetButton.onclick = function () {
+    clearBoard();
+  };
+  resetButton.classList.add("ButtonStyle");
+  resetButton.innerHTML = "Reset The Board";
+  bottom.appendChild(resetButton);
+}
+// }
