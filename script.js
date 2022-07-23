@@ -35,6 +35,11 @@ const playerFactory = (name, isHuman, playerTurn, playerSymbol) => {
 const playerOne = playerFactory("Hank", "Human", "first", "X");
 const playerTwo = playerFactory("HAL", "Computer", "second", "O");
 
+const gamePlay = (() => {
+  let playerTurn = "first";
+  return { playerTurn };
+})();
+
 const gameBoard = (() => {
   const stateOfBoard = ["", "", "", "", "", "", "", "", ""];
   let gameButtons = document.querySelectorAll(".cellStyle");
@@ -58,15 +63,13 @@ const gameBoard = (() => {
         let cellsUpdated = document.querySelectorAll(".cellStyle");
         cellsUpdated[index].innerHTML = element;
       });
+      if (gamePlay.playerTurn === "first") {
+        gamePlay.playerTurn = "second";
+      } else gamePlay.playerTurn = "first";
       checkForWinner();
     });
   });
   return { stateOfBoard };
-})();
-
-const gamePlay = (() => {
-  let playerTurn = "first";
-  return { playerTurn };
 })();
 
 function checkForWinner() {
