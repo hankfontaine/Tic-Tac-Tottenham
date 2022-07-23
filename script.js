@@ -29,37 +29,43 @@ const clearBoard = () => {
 };
 
 ////////////////// GAME LOGIC ///////////////////////////
-const playerFactory = (name, isHuman, playerSymbol) => {
-  return { name, isHuman, playerSymbol };
+const playerFactory = (name, isHuman, playerTurn, playerSymbol) => {
+  return { name, isHuman, playerTurn, playerSymbol };
 };
-const playerOne = playerFactory("Hank", "Human", "X");
-const playerTwo = playerFactory("HAL", "Computer", "O");
+const playerOne = playerFactory("Hank", "Human", "first", "X");
+const playerTwo = playerFactory("HAL", "Computer", "second", "O");
 
 const gameBoard = (() => {
-  const stateOfBoard = ["O", "", "O", "", "O", "", "O", "", "O"];
+  const stateOfBoard = ["", "", "", "", "", "", "", "", ""];
   let gameButtons = document.querySelectorAll(".cellStyle");
   gameButtons.forEach(function (cell) {
     cell.addEventListener("click", function () {
-      if (cell.innerHTML != "X" && cell.innerHTML != "O") {
-        gameBoard.stateOfBoard[cell.id] = "X";
-        console.log(gameBoard.stateOfBoard);
+      if (
+        cell.innerHTML != "X" &&
+        cell.innerHTML != "O" &&
+        gamePlay.playerTurn === "first"
+      ) {
+        gameBoard.stateOfBoard[cell.id] = playerOne.playerSymbol;
       }
-      drawBoard();
+      if (
+        cell.innerHTML != "X" &&
+        cell.innerHTML != "O" &&
+        gamePlay.playerTurn === "second"
+      ) {
+        gameBoard.stateOfBoard[cell.id] = playerTwo.playerSymbol;
+      }
+      gameBoard.stateOfBoard.forEach((element, index) => {
+        let cellsUpdated = document.querySelectorAll(".cellStyle");
+        cellsUpdated[index].innerHTML = element;
+      });
     });
   });
   return { stateOfBoard };
 })();
 
-const drawBoard = () => {
-  /////add PLAYERTURN for checking whose turn + player choice //////
-  //   clearBoard();
-  gameBoard.stateOfBoard.forEach((element, index) => {
-    let cellsUpdated = document.querySelectorAll(".cellStyle");
-    cellsUpdated[index].innerHTML = element;
-  });
+const gamePlay = (() => {
+  let playerTurn = "second";
   //   const updatedBoardDisplay = drawBoard(gameBoard.stateOfBoard);
   ////add WINNERCHECK to see if winner has been determined///////
-  //   return { playerTurn, winnerCheck };
-};
-
-drawBoard();
+  return { playerTurn };
+})();
