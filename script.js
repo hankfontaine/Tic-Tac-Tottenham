@@ -76,61 +76,59 @@ function checkForWinner() {
   let result;
   if (gameBoard.stateOfBoard.includes("")) {
     if (
-      (gameSpaceOne.innerHTML &&
-        gameSpaceTwo.innerHTML &&
+      (gameSpaceOne.innerHTML === playerOne.playerSymbol &&
+        gameSpaceTwo.innerHTML === playerOne.playerSymbol &&
         gameSpaceThree.innerHTML === playerOne.playerSymbol) ||
-      (gameSpaceFour.innerHTML &&
-        gameSpaceFive.innerHTML &&
+      (gameSpaceFour.innerHTML === playerOne.playerSymbol &&
+        gameSpaceFive.innerHTML === playerOne.playerSymbol &&
         gameSpaceSix.innerHTML === playerOne.playerSymbol) ||
-      (gameSpaceSeven.innerHTML &&
-        gameSpaceEight.innerHTML &&
+      (gameSpaceSeven.innerHTML === playerOne.playerSymbol &&
+        gameSpaceEight.innerHTML === playerOne.playerSymbol &&
         gameSpaceNine.innerHTML === playerOne.playerSymbol) ||
-      (gameSpaceOne.innerHTML &&
-        gameSpaceFour.innerHTML &&
+      (gameSpaceOne.innerHTML === playerOne.playerSymbol &&
+        gameSpaceFour.innerHTML === playerOne.playerSymbol &&
         gameSpaceSeven.innerHTML === playerOne.playerSymbol) ||
-      (gameSpaceTwo.innerHTML &&
-        gameSpaceFive.innerHTML &&
+      (gameSpaceTwo.innerHTML === playerOne.playerSymbol &&
+        gameSpaceFive.innerHTML === playerOne.playerSymbol &&
         gameSpaceEight.innerHTML === playerOne.playerSymbol) ||
-      (gameSpaceThree.innerHTML &&
-        gameSpaceSix.innerHTML &&
+      (gameSpaceThree.innerHTML === playerOne.playerSymbol &&
+        gameSpaceSix.innerHTML === playerOne.playerSymbol &&
         gameSpaceNine.innerHTML === playerOne.playerSymbol) ||
-      (gameSpaceOne.innerHTML &&
-        gameSpaceFive.innerHTML &&
+      (gameSpaceOne.innerHTML === playerOne.playerSymbol &&
+        gameSpaceFive.innerHTML === playerOne.playerSymbol &&
         gameSpaceNine.innerHTML === playerOne.playerSymbol) ||
-      (gameSpaceThree.innerHTML &&
-        gameSpaceFive.innerHTML &&
+      (gameSpaceThree.innerHTML === playerOne.playerSymbol &&
+        gameSpaceFive.innerHTML === playerOne.playerSymbol &&
         gameSpaceSeven.innerHTML === playerOne.playerSymbol)
     ) {
       result = `${playerOne.name} wins!`;
-      clearBoard();
     } else if (
-      (gameSpaceOne.innerHTML &&
-        gameSpaceTwo.innerHTML &&
+      (gameSpaceOne.innerHTML === playerTwo.playerSymbol &&
+        gameSpaceTwo.innerHTML === playerTwo.playerSymbol &&
         gameSpaceThree.innerHTML === playerTwo.playerSymbol) ||
-      (gameSpaceFour.innerHTML &&
-        gameSpaceFive.innerHTML &&
+      (gameSpaceFour.innerHTML === playerTwo.playerSymbol &&
+        gameSpaceFive.innerHTML === playerTwo.playerSymbol &&
         gameSpaceSix.innerHTML === playerTwo.playerSymbol) ||
-      (gameSpaceSeven.innerHTML &&
-        gameSpaceEight.innerHTML &&
+      (gameSpaceSeven.innerHTML === playerTwo.playerSymbol &&
+        gameSpaceEight.innerHTML === playerTwo.playerSymbol &&
         gameSpaceNine.innerHTML === playerTwo.playerSymbol) ||
-      (gameSpaceOne.innerHTML &&
-        gameSpaceFour.innerHTML &&
+      (gameSpaceOne.innerHTML === playerTwo.playerSymbol &&
+        gameSpaceFour.innerHTML === playerTwo.playerSymbol &&
         gameSpaceSeven.innerHTML === playerTwo.playerSymbol) ||
-      (gameSpaceTwo.innerHTML &&
-        gameSpaceFive.innerHTML &&
+      (gameSpaceTwo.innerHTML === playerTwo.playerSymbol &&
+        gameSpaceFive.innerHTML === playerTwo.playerSymbol &&
         gameSpaceEight.innerHTML === playerTwo.playerSymbol) ||
-      (gameSpaceThree.innerHTML &&
-        gameSpaceSix.innerHTML &&
+      (gameSpaceThree.innerHTML === playerTwo.playerSymbol &&
+        gameSpaceSix.innerHTML === playerTwo.playerSymbol &&
         gameSpaceNine.innerHTML === playerTwo.playerSymbol) ||
-      (gameSpaceOne.innerHTML &&
-        gameSpaceFive.innerHTML &&
+      (gameSpaceOne.innerHTML === playerTwo.playerSymbol &&
+        gameSpaceFive.innerHTML === playerTwo.playerSymbol &&
         gameSpaceNine.innerHTML === playerTwo.playerSymbol) ||
-      (gameSpaceThree.innerHTML &&
-        gameSpaceFive.innerHTML &&
+      (gameSpaceThree.innerHTML === playerTwo.playerSymbol &&
+        gameSpaceFive.innerHTML === playerTwo.playerSymbol &&
         gameSpaceSeven.innerHTML === playerTwo.playerSymbol)
     ) {
       result = `${playerTwo.name} wins!`;
-      clearBoard();
     }
   } else result = `${playerOne.name} and ${playerTwo.name} tied!`;
   console.log(result);
