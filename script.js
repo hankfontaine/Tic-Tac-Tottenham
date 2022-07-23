@@ -79,6 +79,7 @@ const gameBoard = (() => {
         gamePlay.playerTurn = "second";
       } else gamePlay.playerTurn = "first";
       checkForWinner();
+      createResetButton();
     });
   });
   return { stateOfBoard };
@@ -87,79 +88,23 @@ const gameBoard = (() => {
 function checkForWinner() {
   let result;
   if (gameBoard.stateOfBoard.includes("")) {
-    if (
-      (gameSpaceOne.innerHTML === playerOne.playerSymbol &&
-        gameSpaceTwo.innerHTML === playerOne.playerSymbol &&
-        gameSpaceThree.innerHTML === playerOne.playerSymbol) ||
-      (gameSpaceFour.innerHTML === playerOne.playerSymbol &&
-        gameSpaceFive.innerHTML === playerOne.playerSymbol &&
-        gameSpaceSix.innerHTML === playerOne.playerSymbol) ||
-      (gameSpaceSeven.innerHTML === playerOne.playerSymbol &&
-        gameSpaceEight.innerHTML === playerOne.playerSymbol &&
-        gameSpaceNine.innerHTML === playerOne.playerSymbol) ||
-      (gameSpaceOne.innerHTML === playerOne.playerSymbol &&
-        gameSpaceFour.innerHTML === playerOne.playerSymbol &&
-        gameSpaceSeven.innerHTML === playerOne.playerSymbol) ||
-      (gameSpaceTwo.innerHTML === playerOne.playerSymbol &&
-        gameSpaceFive.innerHTML === playerOne.playerSymbol &&
-        gameSpaceEight.innerHTML === playerOne.playerSymbol) ||
-      (gameSpaceThree.innerHTML === playerOne.playerSymbol &&
-        gameSpaceSix.innerHTML === playerOne.playerSymbol &&
-        gameSpaceNine.innerHTML === playerOne.playerSymbol) ||
-      (gameSpaceOne.innerHTML === playerOne.playerSymbol &&
-        gameSpaceFive.innerHTML === playerOne.playerSymbol &&
-        gameSpaceNine.innerHTML === playerOne.playerSymbol) ||
-      (gameSpaceThree.innerHTML === playerOne.playerSymbol &&
-        gameSpaceFive.innerHTML === playerOne.playerSymbol &&
-        gameSpaceSeven.innerHTML === playerOne.playerSymbol)
-    ) {
-      result = `${playerOne.name} wins!`;
-      alert(result);
-    } else if (
-      (gameSpaceOne.innerHTML === playerTwo.playerSymbol &&
-        gameSpaceTwo.innerHTML === playerTwo.playerSymbol &&
-        gameSpaceThree.innerHTML === playerTwo.playerSymbol) ||
-      (gameSpaceFour.innerHTML === playerTwo.playerSymbol &&
-        gameSpaceFive.innerHTML === playerTwo.playerSymbol &&
-        gameSpaceSix.innerHTML === playerTwo.playerSymbol) ||
-      (gameSpaceSeven.innerHTML === playerTwo.playerSymbol &&
-        gameSpaceEight.innerHTML === playerTwo.playerSymbol &&
-        gameSpaceNine.innerHTML === playerTwo.playerSymbol) ||
-      (gameSpaceOne.innerHTML === playerTwo.playerSymbol &&
-        gameSpaceFour.innerHTML === playerTwo.playerSymbol &&
-        gameSpaceSeven.innerHTML === playerTwo.playerSymbol) ||
-      (gameSpaceTwo.innerHTML === playerTwo.playerSymbol &&
-        gameSpaceFive.innerHTML === playerTwo.playerSymbol &&
-        gameSpaceEight.innerHTML === playerTwo.playerSymbol) ||
-      (gameSpaceThree.innerHTML === playerTwo.playerSymbol &&
-        gameSpaceSix.innerHTML === playerTwo.playerSymbol &&
-        gameSpaceNine.innerHTML === playerTwo.playerSymbol) ||
-      (gameSpaceOne.innerHTML === playerTwo.playerSymbol &&
-        gameSpaceFive.innerHTML === playerTwo.playerSymbol &&
-        gameSpaceNine.innerHTML === playerTwo.playerSymbol) ||
-      (gameSpaceThree.innerHTML === playerTwo.playerSymbol &&
-        gameSpaceFive.innerHTML === playerTwo.playerSymbol &&
-        gameSpaceSeven.innerHTML === playerTwo.playerSymbol)
-    ) {
-      result = `${playerTwo.name} wins!`;
-      alert(result);
-    }
+    checkIfNotTie();
   } else {
-    result = `${playerOne.name} and ${playerTwo.name} tied!`;
+    checkIfNotTie();
+    if (result) {
+      return;
+    } else result = `${playerOne.name} and ${playerTwo.name} tied!`;
     alert(result);
   }
   if (result != undefined) {
-    createResetButton();
     gameBoard.stateOfBoard = ["", "", "", "", "", "", "", "", ""];
   }
   return result;
 }
 
 function createResetButton() {
-  //   if (resetButton) {
-  //     return;
-  //   } else {
   const bottom = document.getElementById("bottom");
+  bottom.innerHTML = "";
   const resetButton = document.createElement("button");
   resetButton.onclick = function () {
     clearBoard();
@@ -168,4 +113,64 @@ function createResetButton() {
   resetButton.innerHTML = "Reset The Board";
   bottom.appendChild(resetButton);
 }
-// }
+
+function checkIfNotTie() {
+  if (
+    (gameSpaceOne.innerHTML === playerOne.playerSymbol &&
+      gameSpaceTwo.innerHTML === playerOne.playerSymbol &&
+      gameSpaceThree.innerHTML === playerOne.playerSymbol) ||
+    (gameSpaceFour.innerHTML === playerOne.playerSymbol &&
+      gameSpaceFive.innerHTML === playerOne.playerSymbol &&
+      gameSpaceSix.innerHTML === playerOne.playerSymbol) ||
+    (gameSpaceSeven.innerHTML === playerOne.playerSymbol &&
+      gameSpaceEight.innerHTML === playerOne.playerSymbol &&
+      gameSpaceNine.innerHTML === playerOne.playerSymbol) ||
+    (gameSpaceOne.innerHTML === playerOne.playerSymbol &&
+      gameSpaceFour.innerHTML === playerOne.playerSymbol &&
+      gameSpaceSeven.innerHTML === playerOne.playerSymbol) ||
+    (gameSpaceTwo.innerHTML === playerOne.playerSymbol &&
+      gameSpaceFive.innerHTML === playerOne.playerSymbol &&
+      gameSpaceEight.innerHTML === playerOne.playerSymbol) ||
+    (gameSpaceThree.innerHTML === playerOne.playerSymbol &&
+      gameSpaceSix.innerHTML === playerOne.playerSymbol &&
+      gameSpaceNine.innerHTML === playerOne.playerSymbol) ||
+    (gameSpaceOne.innerHTML === playerOne.playerSymbol &&
+      gameSpaceFive.innerHTML === playerOne.playerSymbol &&
+      gameSpaceNine.innerHTML === playerOne.playerSymbol) ||
+    (gameSpaceThree.innerHTML === playerOne.playerSymbol &&
+      gameSpaceFive.innerHTML === playerOne.playerSymbol &&
+      gameSpaceSeven.innerHTML === playerOne.playerSymbol)
+  ) {
+    result = `${playerOne.name} wins!`;
+    alert(result);
+  } else if (
+    (gameSpaceOne.innerHTML === playerTwo.playerSymbol &&
+      gameSpaceTwo.innerHTML === playerTwo.playerSymbol &&
+      gameSpaceThree.innerHTML === playerTwo.playerSymbol) ||
+    (gameSpaceFour.innerHTML === playerTwo.playerSymbol &&
+      gameSpaceFive.innerHTML === playerTwo.playerSymbol &&
+      gameSpaceSix.innerHTML === playerTwo.playerSymbol) ||
+    (gameSpaceSeven.innerHTML === playerTwo.playerSymbol &&
+      gameSpaceEight.innerHTML === playerTwo.playerSymbol &&
+      gameSpaceNine.innerHTML === playerTwo.playerSymbol) ||
+    (gameSpaceOne.innerHTML === playerTwo.playerSymbol &&
+      gameSpaceFour.innerHTML === playerTwo.playerSymbol &&
+      gameSpaceSeven.innerHTML === playerTwo.playerSymbol) ||
+    (gameSpaceTwo.innerHTML === playerTwo.playerSymbol &&
+      gameSpaceFive.innerHTML === playerTwo.playerSymbol &&
+      gameSpaceEight.innerHTML === playerTwo.playerSymbol) ||
+    (gameSpaceThree.innerHTML === playerTwo.playerSymbol &&
+      gameSpaceSix.innerHTML === playerTwo.playerSymbol &&
+      gameSpaceNine.innerHTML === playerTwo.playerSymbol) ||
+    (gameSpaceOne.innerHTML === playerTwo.playerSymbol &&
+      gameSpaceFive.innerHTML === playerTwo.playerSymbol &&
+      gameSpaceNine.innerHTML === playerTwo.playerSymbol) ||
+    (gameSpaceThree.innerHTML === playerTwo.playerSymbol &&
+      gameSpaceFive.innerHTML === playerTwo.playerSymbol &&
+      gameSpaceSeven.innerHTML === playerTwo.playerSymbol)
+  ) {
+    result = `${playerTwo.name} wins!`;
+    alert(result);
+    return result;
+  }
+}
