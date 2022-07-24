@@ -178,7 +178,6 @@ const checkForWinner = () => {
       return;
     } else result = `${playerOne.name} and ${playerTwo.name} tied!`;
     alert(result);
-    // }
     return result;
   }
 };
