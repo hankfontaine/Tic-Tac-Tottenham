@@ -72,33 +72,32 @@ const playerTwo = playerFactory(
   "O"
 );
 
-const gamePlay = (() => {
-  let playerTurn = "first";
-  return { playerTurn };
-})();
+// const gamePlay = (() => {
+//   let playerTurn = "first";
+//   return { playerTurn };
+// })();
 
 const gameBoard = (() => {
   let stateOfBoard = ["", "", "", "", "", "", "", "", ""];
+  let playerTurn = "first";
   let gameButtons = document.querySelectorAll(".cellStyle");
   gameButtons.forEach(function (cell) {
     cell.addEventListener("click", function () {
       if (
-        cell.innerHTML != playerOne.playerSymbol &&
-        cell.innerHTML != playerTwo.playerSymbol &&
-        gamePlay.playerTurn === "first"
+        cell.innerHTML !== playerOne.playerSymbol &&
+        cell.innerHTML !== playerTwo.playerSymbol &&
+        playerTurn === "first"
       ) {
         gameBoard.stateOfBoard[cell.id] = playerOne.playerSymbol;
-      }
-      if (
-        cell.innerHTML != playerOne.playerSymbol &&
-        cell.innerHTML != playerTwo.playerSymbol &&
-        gamePlay.playerTurn === "second"
+        playerTurn = "second";
+      } else if (
+        cell.innerHTML !== playerOne.playerSymbol &&
+        cell.innerHTML !== playerTwo.playerSymbol &&
+        playerTurn === "second"
       ) {
         gameBoard.stateOfBoard[cell.id] = playerTwo.playerSymbol;
+        playerTurn = "first";
       }
-      if (gamePlay.playerTurn === "first") {
-        gamePlay.playerTurn = "second";
-      } else gamePlay.playerTurn = "first";
       gameBoard.stateOfBoard.forEach((element, index) => {
         let cellsUpdated = document.querySelectorAll(".cellStyle");
         cellsUpdated[index].innerHTML = element;
