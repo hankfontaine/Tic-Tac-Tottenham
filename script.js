@@ -1,25 +1,29 @@
 //////////////// GAME BOARD DESIGN //////////////////////
 
-// const delayOfDisplay = 2000;
+const delayOfDisplay = 2000;
 
-// setTimeout(() => {
-//   const header = document.getElementById("header");
-//   const xButton = document.createElement("button");
-//   xButton.onclick = function () {
-//     playerOne.playerSymbol = "X";
-//   };
-//   xButton.classList.add("TopButtonStyle");
-//   xButton.innerHTML = "Play as X";
-//   header.appendChild(xButton);
+setTimeout(() => {
+  const header = document.getElementById("header");
+  const xButton = document.createElement("button");
+  xButton.onclick = function () {
+    playerOne.playerSymbol = "X";
+    playerTwo.playerSymbol = "O";
+    header.innerHTML = "";
+  };
+  xButton.classList.add("TopButtonStyle");
+  xButton.innerHTML = "Play as X";
+  header.appendChild(xButton);
 
-//   const oButton = document.createElement("button");
-//   oButton.onclick = function () {
-//     playerOne.playerSymbol = "O";
-//   };
-//   oButton.classList.add("TopButtonStyle");
-//   oButton.innerHTML = "Play as 0";
-//   header.appendChild(oButton);
-// }, delayOfDisplay);
+  const oButton = document.createElement("button");
+  oButton.onclick = function () {
+    playerOne.playerSymbol = "O";
+    playerTwo.playerSymbol = "X";
+    header.innerHTML = "";
+  };
+  oButton.classList.add("TopButtonStyle");
+  oButton.innerHTML = "Play as 0";
+  header.appendChild(oButton);
+}, delayOfDisplay);
 
 const mainContainer = document.getElementById("container");
 for (i = 0; i < 9; i++) {
@@ -55,24 +59,11 @@ clearBoard();
 const playerFactory = (name, isHuman, playerTurn, playerSymbol) => {
   return { name, isHuman, playerTurn, playerSymbol };
 };
-const playerOne = playerFactory(
-  // "Player One",
-  prompt("What's player one's name?"),
-  "Human",
-  "first",
-  // prompt("What's player one's symbol?")
-  "X"
-);
-const playerTwo = playerFactory(
-  // "Player Two",
-  prompt("What's player two's name?"),
-  "Computer",
-  "second",
-  //   prompt("What's player two's symbol?")
-  "O"
-);
+const playerOne = playerFactory("Hank", "Human", "first", "X");
+const playerTwo = playerFactory("HAL", "Computer", "second", "O");
 
 const gameBoard = (() => {
+  clearBoard();
   let stateOfBoard = ["", "", "", "", "", "", "", "", ""];
   let playerTurn = "first";
   let gameButtons = document.querySelectorAll(".cellStyle");
