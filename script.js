@@ -1,4 +1,6 @@
-//////////////// PLAYER INPUT SELECTION //////////////
+/////////////////////////////////////////////////////
+/////////////// PLAYER INPUT SELECTION //////////////
+/////////////////////////////////////////////////////
 
 const delayOfDisplay = 2000;
 setTimeout(() => {
@@ -23,7 +25,9 @@ setTimeout(() => {
   header.appendChild(oButton);
 }, delayOfDisplay);
 
-///////////// GAMEBOARD DESIGN /////////////////////
+/////////////////////////////////////////////////////
+///////////// GAMEBOARD DESIGN //////////////////////
+/////////////////////////////////////////////////////
 
 const mainContainer = document.getElementById("container");
 for (i = 0; i < 9; i++) {
@@ -42,7 +46,10 @@ const gameSpaceSeven = document.getElementById("6");
 const gameSpaceEight = document.getElementById("7");
 const gameSpaceNine = document.getElementById("8");
 
+/////////////////////////////////////////////////////
 ////////////// GAMEPLAY LOGIC ///////////////////////
+/////////////////////////////////////////////////////
+
 const playerFactory = (name, isHuman, playerTurn, playerSymbol) => {
   return { name, isHuman, playerTurn, playerSymbol };
 };
@@ -75,6 +82,7 @@ const gameBoard = (() => {
     gameSpaceEight.innerHTML = "A";
     gameSpaceNine.innerHTML = "M";
     playerTurn = "first";
+    bottom.innerHTML = "";
   };
   clearBoard();
   let gameTiles = document.querySelectorAll(".cellStyle");
@@ -107,6 +115,10 @@ const gameBoard = (() => {
   return { stateOfBoard };
 })();
 
+//////////////////////////////////////////////////////
+//////////////// WIN CONDITIONS //////////////////////
+//////////////////////////////////////////////////////
+
 const checkForWinner = () => {
   let result;
   if (
@@ -136,7 +148,6 @@ const checkForWinner = () => {
       gameSpaceSeven.innerHTML === playerOne.playerSymbol)
   ) {
     result = `${playerOne.name} wins!`;
-    console.log(result);
     alert(result);
     return result;
   } else if (
