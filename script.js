@@ -1,7 +1,6 @@
-//////////////// GAME BOARD DESIGN //////////////////////
+//////////////// PLAYER INPUT SELECTION //////////////
 
 const delayOfDisplay = 2000;
-
 setTimeout(() => {
   const header = document.getElementById("header");
   const xButton = document.createElement("button");
@@ -13,7 +12,6 @@ setTimeout(() => {
   xButton.classList.add("TopButtonStyle");
   xButton.innerHTML = "Play as X";
   header.appendChild(xButton);
-
   const oButton = document.createElement("button");
   oButton.onclick = function () {
     playerOne.playerSymbol = "O";
@@ -24,6 +22,8 @@ setTimeout(() => {
   oButton.innerHTML = "Play as 0";
   header.appendChild(oButton);
 }, delayOfDisplay);
+
+///////////// GAMEBOARD DESIGN /////////////////////
 
 const mainContainer = document.getElementById("container");
 for (i = 0; i < 9; i++) {
@@ -42,20 +42,7 @@ const gameSpaceSeven = document.getElementById("6");
 const gameSpaceEight = document.getElementById("7");
 const gameSpaceNine = document.getElementById("8");
 
-const clearBoard = () => {
-  gameSpaceOne.innerHTML = "T";
-  gameSpaceTwo.innerHTML = "Ø";
-  gameSpaceThree.innerHTML = "T";
-  gameSpaceFour.innerHTML = "T";
-  gameSpaceFive.innerHTML = "E";
-  gameSpaceSix.innerHTML = "N";
-  gameSpaceSeven.innerHTML = "H";
-  gameSpaceEight.innerHTML = "A";
-  gameSpaceNine.innerHTML = "M";
-};
-clearBoard();
-
-////////////////// GAME LOGIC ///////////////////////////
+////////////// GAMEPLAY LOGIC ///////////////////////
 const playerFactory = (name, isHuman, playerTurn, playerSymbol) => {
   return { name, isHuman, playerTurn, playerSymbol };
 };
@@ -63,11 +50,35 @@ const playerOne = playerFactory("Hank", "Human", "first", "X");
 const playerTwo = playerFactory("HAL", "Computer", "second", "O");
 
 const gameBoard = (() => {
-  clearBoard();
+  const createResetButton = () => {
+    const bottom = document.getElementById("bottom");
+    bottom.innerHTML = "";
+    const resetButton = document.createElement("button");
+    resetButton.onclick = function () {
+      clearBoard();
+      gameBoard.stateOfBoard = ["", "", "", "", "", "", "", "", ""];
+    };
+    resetButton.classList.add("ButtonStyle");
+    resetButton.innerHTML = "Reset The Board";
+    bottom.appendChild(resetButton);
+  };
   let stateOfBoard = ["", "", "", "", "", "", "", "", ""];
   let playerTurn = "first";
-  let gameButtons = document.querySelectorAll(".cellStyle");
-  gameButtons.forEach(function (cell) {
+  const clearBoard = () => {
+    gameSpaceOne.innerHTML = "T";
+    gameSpaceTwo.innerHTML = "Ø";
+    gameSpaceThree.innerHTML = "T";
+    gameSpaceFour.innerHTML = "T";
+    gameSpaceFive.innerHTML = "E";
+    gameSpaceSix.innerHTML = "N";
+    gameSpaceSeven.innerHTML = "H";
+    gameSpaceEight.innerHTML = "A";
+    gameSpaceNine.innerHTML = "M";
+    playerTurn = "first";
+  };
+  clearBoard();
+  let gameTiles = document.querySelectorAll(".cellStyle");
+  gameTiles.forEach(function (cell) {
     cell.addEventListener("click", function () {
       if (
         cell.innerHTML !== playerOne.playerSymbol &&
@@ -91,6 +102,7 @@ const gameBoard = (() => {
       checkForWinner();
       createResetButton();
     });
+    clearBoard();
   });
   return { stateOfBoard };
 })();
@@ -162,17 +174,4 @@ const checkForWinner = () => {
     alert(result);
     return result;
   }
-};
-
-const createResetButton = () => {
-  const bottom = document.getElementById("bottom");
-  bottom.innerHTML = "";
-  const resetButton = document.createElement("button");
-  resetButton.onclick = function () {
-    clearBoard();
-    gameBoard.stateOfBoard = ["", "", "", "", "", "", "", "", ""];
-  };
-  resetButton.classList.add("ButtonStyle");
-  resetButton.innerHTML = "Reset The Board";
-  bottom.appendChild(resetButton);
 };
