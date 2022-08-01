@@ -53,6 +53,7 @@ const gameSpaceNine = document.getElementById("8");
 const playerFactory = (name, isHuman, playerTurn, playerSymbol) => {
   return { name, isHuman, playerTurn, playerSymbol };
 };
+
 const playerOne = playerFactory("Hank", "Human", "first", "X");
 const playerTwo = playerFactory("HAL", "Computer", "second", "O");
 
